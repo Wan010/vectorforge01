@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvoiceCrypto - Smart Business Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h2>InvoiceCrypto</h2>
+                <span>Business Suite</span>
+            </div>
+            <nav class="nav">
+                <a href="#dashboard" class="nav-link active">Dashboard</a>
+                <a href="#invoices" class="nav-link">Invoices</a>
+                <a href="#crypto" class="nav-link">Crypto</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#membership" class="nav-link">Pro Features</a>
+            </nav>
+            <div class="user-profile">
+                <div class="user-plan" id="userPlan">FREE</div>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Dashboard -->
+        <section id="dashboard" class="section active">
+            <div class="container">
+                <h1>Dashboard Overview</h1>
+                
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-info">
+                            <h3>$24,580</h3>
+                            <p>Total Revenue</p>
+                            <span class="stat-change positive">+12%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🧾</div>
+                        <div class="stat-info">
+                            <h3 id="invoiceCount">0</h3>
+                            <p>Invoices This Month</p>
+                            <span class="stat-change positive">+8%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">₿</div>
+                        <div class="stat-info">
+                            <h3 id="portfolioValue">$0</h3>
+                            <p>Crypto Portfolio</p>
+                            <span class="stat-change positive">+5.2%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h2>Quick Actions</h2>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="showSection('invoices')">
+                            <span>🧾</span>
+                            Create Invoice
+                        </button>
+                        <button class="action-btn" onclick="showSection('crypto')">
+                            <span>₿</span>
+                            Track Crypto
+                        </button>
+                        <button class="action-btn" onclick="showSection('portfolio')">
+                            <span>💼</span>
+                            View Portfolio
+                        </button>
+                        <button class="action-btn" onclick="showSection('membership')">
+                            <span>⭐</span>
+                            Go Pro
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <span class="activity-icon">✅</span>
+                            <div class="activity-info">
+                                <strong>Invoice INV-001 Paid</strong>
+                                <span>Web Design Co. - $2,500</span>
+                            </div>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-icon">₿</span>
+                            <div class="activity-info">
+                                <strong>Bitcoin Purchase</strong>
+                                <span>0.025 BTC - $1,050</span>
+                            </div>
+                            <span class="activity-time">5 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pro Features Preview -->
+                <div class="pro-feature pro-feature-locked">
+                    <h3>Advanced Analytics <span class="pro-badge">PRO</span></h3>
+                    <div class="advanced-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">📈</div>
+                            <div class="stat-info">
+                                <h3>32%</h3>
+                                <p>Profit Margin</p>
+                                <span class="stat-change positive">+5%</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">👥</div>
+                            <div class="stat-info">
+                                <h3>24</h3>
+                                <p>Active Clients</p>
+                                <span class="stat-change positive">+3</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="upgrade-prompt">Upgrade to Pro to unlock advanced business analytics</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Invoice Generator -->
+        <section id="invoices" class="section">
+            <div class="container">
+                <h1>Create Invoice</h1>
+                <div class="plan-limits">
+                    <span id="invoiceLimit">Monthly invoices: 0/5</span>
+                </div>
+                
+                <div class="invoice-form">
+                    <div class="form-group">
+                        <label for="clientName">Client Name *</label>
+                        <input type="text" id="clientName" placeholder="Enter client name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="invoiceAmount">Amount ($) *</label>
+                        <input type="number" id="invoiceAmount" placeholder="0.00" step="0.01" required>
+                    </div>
+                    
+                    <div class="form-group pro-feature pro-feature-locked">
+                        <label for="invoiceCurrency">Currency</label>
+                        <select id="invoiceCurrency">
+                            <option value="USD">USD - US Dollar</option>
+                            <option value="EUR">EUR - Euro</option>
+                            <option value="GBP">GBP - British Pound</option>
+                            <option value="BTC">BTC - Bitcoin</option>
+                            <option value="ETH">ETH - Ethereum</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group pro-feature pro-feature-locked">
+                        <label for="taxRate">Tax Rate (%)</label>
+                        <input type="number" id="taxRate" value="10" min="0" max="50" step="0.1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="invoiceDescription">Description</label>
+                        <textarea id="invoiceDescription" placeholder="Service description"></textarea>
+                    </div>
+
+                    <div class="form-group pro-feature pro-feature-locked">
+                        <label>
+                            <input type="checkbox" id="recurringInvoice"> Recurring Invoice
+                        </label>
+                        <select id="recurringFrequency" style="margin-top: 0.5rem; display: none;">
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="quarterly">Quarterly</option>
+                            <option value="yearly">Yearly</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="generateInvoice()">Generate Invoice</button>
+                    
+                    <!-- Invoice Preview -->
+                    <div id="invoicePreview" class="invoice-preview" style="display: none;">
+                        <h3>Invoice Preview</h3>
+                        <div class="preview-content">
+                            <p><strong>Client:</strong> <span id="previewClient"></span></p>
+                            <p><strong>Amount:</strong> $<span id="previewAmount"></span></p>
+                            <p><strong>Description:</strong> <span id="previewDescription"></span></p>
+                            <p><strong>Invoice #:</strong> <span id="previewNumber"></span></p>
+                            <p><strong>Date:</strong> <span id="previewDate"></span></p>
+                            <div id="proFeaturesPreview"></div>
+                        </div>
+                        <button class="btn btn-secondary" onclick="downloadInvoice()">Download PDF</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Crypto Tracker -->
+        <section id="crypto" class="section">
+            <div class="container">
+                <h1>Crypto Market Tracker</h1>
+                
+                <div class="crypto-grid" id="cryptoGrid">
+                    <div class="loading">Loading cryptocurrencies...</div>
+                </div>
+                
+                <!-- Crypto Search -->
+                <div class="search-box">
+                    <input type="text" id="cryptoSearch" placeholder="Search cryptocurrencies..." onkeyup="filterCrypto()">
+                </div>
+
+                <!-- Advanced Crypto Features -->
+                <div class="pro-feature pro-feature-locked">
+                    <h3>Advanced Market Data <span class="pro-badge">PRO</span></h3>
+                    <div class="advanced-crypto">
+                        <div class="market-stats">
+                            <div class="market-stat">
+                                <span>Total Market Cap</span>
+                                <strong>$2.1T</strong>
+                            </div>
+                            <div class="market-stat">
+                                <span>24h Volume</span>
+                                <strong>$87.2B</strong>
+                            </div>
+                            <div class="market-stat">
+                                <span>BTC Dominance</span>
+                                <strong>48.2%</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio -->
+        <section id="portfolio" class="section">
+            <div class="container">
+                <h1>Your Portfolio</h1>
+                
+                <div class="portfolio-summary">
+                    <div class="portfolio-value">
+                        <h3>Total Portfolio Value</h3>
+                        <div class="value" id="totalPortfolioValue">$0.00</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="showSection('crypto')">Add Crypto</button>
+                </div>
+                
+                <div class="portfolio-list" id="portfolioList">
+                    <div class="empty-portfolio">
+                        <p>No cryptocurrencies in portfolio</p>
+                        <button class="btn btn-outline" onclick="showSection('crypto')">Browse Crypto</button>
+                    </div>
+                </div>
+
+                <!-- Portfolio Analytics -->
+                <div class="pro-feature pro-feature-locked">
+                    <h3>Portfolio Analytics <span class="pro-badge">PRO</span></h3>
+                    <div class="portfolio-analytics">
+                        <div class="analytics-grid">
+                            <div class="analytics-card">
+                                <h4>Total Profit/Loss</h4>
+                                <div class="analytics-value positive">+$1,240.50</div>
+                                <span>+12.5% overall</span>
+                            </div>
+                            <div class="analytics-card">
+                                <h4>Best Performer</h4>
+                                <div class="analytics-value">SOL</div>
+                                <span>+45.2%</span>
+                            </div>
+                            <div class="analytics-card">
+                                <h4>Diversification</h4>
+                                <div class="analytics-value">Good</div>
+                                <span>5 assets</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Membership -->
+        <section id="membership" class="section">
+            <div class="container">
+                <h1>Upgrade to Pro</h1>
+                <p class="subtitle">Unlock advanced features for your business</p>
+                
+                <!-- Pricing Plans -->
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="plan-header">
+                            <h3>Free</h3>
+                            <div class="price">$0<span>/month</span></div>
+                        </div>
+                        <ul class="features-list">
+                            <li class="feature available">✓ 5 Invoices/Month</li>
+                            <li class="feature available">✓ Basic Crypto Tracking</li>
+                            <li class="feature available">✓ 1 Portfolio</li>
+                            <li class="feature unavailable">✗ Advanced Analytics</li>
+                            <li class="feature unavailable">✗ Multi-currency</li>
+                            <li class="feature unavailable">✗ Tax Calculation</li>
+                            <li class="feature unavailable">✗ Recurring Invoices</li>
+                            <li class="feature unavailable">✗ Client Management</li>
+                        </ul>
+                        <button class="btn btn-outline" id="freePlanBtn" disabled>Current Plan</button>
+                    </div>
+                    
+                    <div class="pricing-card featured">
+                        <div class="plan-badge">Most Popular</div>
+                        <div class="plan-header">
+                            <h3>Pro</h3>
+                            <div class="price">$9<span>/month</span></div>
+                        </div>
+                        <ul class="features-list">
+                            <li class="feature available">✓ Unlimited Invoices</li>
+                            <li class="feature available">✓ Advanced Crypto Tracking</li>
+                            <li class="feature available">✓ Multiple Portfolios</li>
+                            <li class="feature available">✓ Advanced Analytics</li>
+                            <li class="feature available">✓ Multi-currency Support</li>
+                            <li class="feature available">✓ Tax Calculation</li>
+                            <li class="feature available">✓ Recurring Invoices</li>
+                            <li class="feature available">✓ Client Management</li>
+                        </ul>
+                        <button class="btn btn-primary" id="proPlanBtn" onclick="showPaymentForm()">Upgrade to Pro</button>
+                    </div>
+                </div>
+
+                <!-- Payment Form -->
+                <div id="paymentForm" class="payment-form" style="display: none;">
+                    <h3>Complete Your Pro Membership</h3>
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number</label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiryDate">Expiry Date</label>
+                            <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardName">Name on Card</label>
+                        <input type="text" id="cardName" placeholder="John Doe">
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" onclick="hidePaymentForm()">Cancel</button>
+                        <button class="btn btn-primary" onclick="processPayment()">
+                            <span id="paymentText">Pay $9.00/month</span>
+                            <span id="paymentLoading" style="display: none;">Processing...</span>
+                        </button>
+                    </div>
+                    <p class="payment-note">Secure payment powered by Stripe. Cancel anytime.</p>
+                </div>
+
+                <!-- Subscription Management -->
+                <div id="subscriptionManagement" class="subscription-management" style="display: none;">
+                    <h3>Your Pro Subscription</h3>
+                    <div class="subscription-info">
+                        <div class="subscription-item">
+                            <span class="subscription-label">Plan</span>
+                            <span class="subscription-value">Pro - $9/month</span>
+                        </div>
+                        <div class="subscription-item">
+                            <span class="subscription-label">Status</span>
+                            <span class="subscription-value">Active</span>
+                        </div>
+                        <div class="subscription-item">
+                            <span class="subscription-label">Next Billing</span>
+                            <span class="subscription-value" id="nextBillingDate"></span>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-danger" onclick="cancelSubscription()">Cancel Subscription</button>
+                        <button class="btn btn-outline" onclick="hideSubscriptionManagement()">Close</button>
+                    </div>
+                </div>
+
+                <!-- Pro Features Showcase -->
+                <div class="pro-features">
+                    <h2>Pro Features</h2>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">📊</div>
+                            <h4>Advanced Analytics</h4>
+                            <p>Detailed revenue reports, profit margins, and business insights</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🌍</div>
+                            <h4>Multi-currency</h4>
+                            <p>Create invoices in 50+ currencies with automatic conversion</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🔄</div>
+                            <h4>Recurring Invoices</h4>
+                            <p>Automate recurring billing for subscription clients</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">👥</div>
+                            <h4>Client Management</h4>
+                            <p>Manage client database with contact information and history</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🧾</div>
+                            <h4>Tax Calculation</h4>
+                            <p>Automated tax calculation for different regions and countries</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">📈</div>
+                            <h4>Advanced Crypto</h4>
+                            <p>Portfolio analytics, profit/loss tracking, and tax reports</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 InvoiceCrypto. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <script src="script.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
